@@ -32,8 +32,7 @@ void left()
     digitalWrite(LM1, HIGH);
     digitalWrite(LM2, LOW);
     digitalWrite(RM1, LOW);
-    digitalWrite(RM2
-    , LOW);
+    digitalWrite(RM2, LOW);
 }
 
 void halt()
@@ -44,6 +43,19 @@ void halt()
     digitalWrite(RM2, LOW);
 }
 
+void left90() {
+  while(digitalRead(MS) != 0) {
+    left();
+//    delay(100); //check it delay is needed or not
+  }
+}
+
+void right90() {
+  while(digitalRead(MS) != 0) {
+    right();
+//    delay(100); //check it delay is needed or not
+  }
+}
 
 void setup() 
 {
@@ -90,13 +102,15 @@ void loop()
 
   if(digitalRead(LS) && digitalRead(RS)) 
     halt();
-  if((digitalRead(LS)) && !(digitalRead(RS)))     // Turn right
+  if((digitalRead(LS)) && !(digitalRead(RS)))     // Turn slight right
     right();
-  if(!(digitalRead(LS)) && (digitalRead(RS)))     // turn left
+  if(!(digitalRead(LS)) && (digitalRead(RS)))     // turn slight left
     left();
-  if(!(digitalRead(LS)) && !(digitalRead(RS)))     // stop
+  if(!(digitalRead(LS)) && !(digitalRead(RS)))     // forward
     fwd();
-
-   
+  if(!(digitalRead(FLS))) // turn left 90
+    left90();
+  if(!(digitalRead(FRS))) // turn right 90
+    right90();
    //fwd();
 }
