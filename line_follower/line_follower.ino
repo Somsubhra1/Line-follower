@@ -62,6 +62,7 @@ void halt()
 // left91() and right91() for 4 sensors
 
 void left91() {
+  left();       // positioning if required
   while((digitalRead(LS) != 0) && digitalRead(RS) != 0) {
     left();
 //    delay(100); //check it delay is needed or not
@@ -69,6 +70,7 @@ void left91() {
 }
 
 void right91() {
+  right();      // positioning if required
   while((digitalRead(LS) != 0) && digitalRead(RS) != 0) {
     right();
 //    delay(100); //check it delay is needed or not
