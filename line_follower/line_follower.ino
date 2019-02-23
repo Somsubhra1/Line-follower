@@ -62,17 +62,17 @@ void halt()
 // left91() and right91() for 4 sensors
 
 void left91() {
-  left();       // positioning if required
+  right();       // positioning if required
   while((digitalRead(LS) != 0) && digitalRead(RS) != 0) {
-    left();
+    right();
 //    delay(100); //check it delay is needed or not
   }
 }
 
 void right91() {
-  right();      // positioning if required
+  left();      // positioning if required
   while((digitalRead(LS) != 0) && digitalRead(RS) != 0) {
-    right();
+    left();
 //    delay(100); //check it delay is needed or not
   }
 }
@@ -159,10 +159,12 @@ void loop() {
     if(!(digitalRead(LS)) && !(digitalRead(RS)))     // forward
       fwd();
     if(!(digitalRead(LS)) && (digitalRead(RS)))     // turn slight left
-      left(); 
+//      left(); 
+        right();
     if((digitalRead(LS)) && !(digitalRead(RS)))     // Turn slight right
-      right();   
-     if(digitalRead(LS) && digitalRead(RS)) 
+//      right(); 
+        left();  
+     if(!(digitalRead(LS)) && !(digitalRead(RS)) && !(digitalRead(FLS)) && !(digitalRead(FRS))) 
        halt();
      if(!(digitalRead(FLS))) // turn left 90
        left91();
